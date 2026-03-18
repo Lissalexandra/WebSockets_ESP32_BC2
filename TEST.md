@@ -6,7 +6,7 @@
 *Instrucciones: Responde a las siguientes preguntas basándote en la teoría de redes y en el análisis del código de nuestro proyecto. Sube este archivo con tus respuestas a tu repositorio como evidencia de trabajo.*
 
 1. **¿Qué es una Dirección IP y para qué sirve en nuestro proyecto?**
-   > 
+   Una dirección IP es un número único que identifica a un dispositivo dentro de una red. En nuestro proyecto sirve para que la computadora pueda encontrar y conectarse con la ESP32.
 
 2. **¿Qué es un Puerto de red? (Menciona qué puerto estamos usando en el código de la ESP32).**
 Permite que varios programas usen la misma dirección IP sin confundirse.
@@ -31,10 +31,10 @@ Si no usáramos hilos, la ventana de Tkinter se quedaría congelada mientras esp
 Esto pasaría porque el programa estaría ocupado esperando la información y no podría actualizar la interfaz gráfica.
 
 8. **¿Por qué es necesario usar bloques `try...except` cuando trabajamos con conexiones de red e Internet?**
- 
+ Porque las conexiones de red pueden fallar, el bloque try...except evita que el programa se detenga y permite manejar los errores correctamente.
 
 9. **En la función de encender el LED en Python, enviamos el comando así: `sock.send(b'ON')`. ¿Qué significa esa letra `b` antes de las comillas y por qué no enviamos un texto normal?**
-   > 
+   La letra b significa que el mensaje se envía en formato de bytes, no se envía texto normal porque los sockets trabajan con datos binarios, entonces es necesario convertir el texto a bytes para que pueda ser transmitido correctamente.
 
 10. **Describe brevemente el flujo de datos: ¿Qué camino recorre la información desde que giras el potenciómetro físicamente hasta que la barra se mueve en la pantalla de la computadora?**
-    
+ Primero el potenciómetro envía una señal analógica a la ESP32, luego la ESP32 convierte esa señal en datos digitales y los envía por la red mediante el socket, después la computadora recibe esos datos con Python y finalmente la interfaz de Tkinter usa esa información para mover la barra en la pantalla.
