@@ -60,17 +60,29 @@ def led_off():
 # --- INTERFAZ GRÁFICA ---
 root = tk.Tk()
 root.title("Control ESP32 - Instituto Cordillera")
+root.geometry("460x270")  # Ventana más grande
+root.resizable(False, False)
+
+# Estilo morado y con bordes suaves
+style = ttk.Style()
+style.theme_use('default')
+style.configure("Purple.Horizontal.TProgressbar", troughcolor="#E8DAFF", background="#A020F0", thickness=24, bordercolor="#9B30FF", relief="flat")
+style.configure("Purple.TButton", background="#8F4FCC", foreground="white", borderwidth=1, focusthickness=3, focuscolor="#8A2BE2")
+style.map("Purple.TButton", background=[('active', '#9F5CE4')])
 
 tk.Label(root, text="CONTROL DE DISPOSITIVO", font=("Arial", 12, "bold")).grid(row=0, column=0, columnspan=2, pady=10)
 
-lbl_valor = tk.Label(root, text="Potenciómetro: 0")
+lbl_valor = tk.Label(root, text="Potenciómetro: 0", font=("Arial", 10, "bold"))
 lbl_valor.grid(row=1, column=0, columnspan=2)
 
-progress = ttk.Progressbar(root, length=200, maximum=4095)
+progress = ttk.Progressbar(root, length=320, maximum=4095, style="Purple.Horizontal.TProgressbar")
 progress.grid(row=2, column=0, columnspan=2, padx=20, pady=10)
 
-tk.Button(root, text="Encender LED", command=led_on, bg="green", fg="white").grid(row=3, column=0, padx=10, pady=10)
-tk.Button(root, text="Apagar LED", command=led_off, bg="red", fg="white").grid(row=3, column=1, padx=10, pady=10)
+btn_on = ttk.Button(root, text="Encender LED", command=led_on, style="Purple.TButton")
+btn_on.grid(row=3, column=0, padx=16, pady=12, ipadx=10, ipady=4)
+
+btn_off = ttk.Button(root, text="Apagar LED", command=led_off, style="Purple.TButton")
+btn_off.grid(row=3, column=1, padx=16, pady=12, ipadx=10, ipady=4)
 
 threading.Thread(target=conectar, daemon=True).start()
 
